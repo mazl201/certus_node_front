@@ -1,0 +1,240 @@
+<link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="assets/tag/selectpage.css" />
+<link rel="stylesheet" type="text/css" href="assets/tag/demo.css" />
+<section id="main-content">
+  <section class="wrapper">
+    <!--state overview end-->
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- <section class="panel" id="addloc">
+          <header class="panel-heading t-pbox">
+            物资列表
+            <div class="pro-search t-pright">
+              <select class="form-control">
+                <option value="">全部</option>
+                <option value="">红酒</option>
+                <option value="">白酒</option>
+                <option value="">礼品</option>
+                <option value="">其他</option>
+              </select>
+              <span>种类：</span>
+              <select class="form-control">
+                <option value="">全部</option>
+                <option value="">北京</option>
+                <option value="">南京</option>
+                <option value="">上海</option>
+                <option value="">广州</option>
+              </select>
+              <span>地点：</span>
+            </div>
+          </header>
+          <div class="panel-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>单价</th>
+                  <th>库存</th>
+                  <th>地点</th>
+                  <th>备注说明</th>
+                  <th width="50px" style="text-align:center;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>罗曼尼-康帝</td>
+                  <td>￥888.99元</td>
+                  <td>12</td>
+                  <td>南京</td>
+                  <td>备注测试数据</td>
+                  <td>
+                    <button onclick="getline('NJ20180102','罗曼尼-康帝','888.99','12')" class="btn btn-info btn-xs"><i class="icon-plus"></i>
+                      领取</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>拉菲</td>
+                  <td>￥888.12元</td>
+                  <td>18</td>
+                  <td>南京</td>
+                  <td>备注测试数据</td>
+                  <td>
+                    <button onclick="getline('NJ20180104','拉菲','888.12','18')" class="btn btn-info btn-xs"><i class="icon-plus"></i>
+                      领取</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>瓦朗德鲁</td>
+                  <td>￥500.88元</td>
+                  <td>20</td>
+                  <td>南京</td>
+                  <td>备注测试数据</td>
+                  <td>
+                    <button onclick="getline('NJ20180108','瓦朗德鲁','500.88','20')" class="btn btn-info btn-xs"><i class="icon-plus"></i>
+                      领取</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-heading">
+            领用清单
+            <span class="btn btn-default btn-xs pull-right"> 合计:￥<span class="sumprc">0.00</span>元</span>
+          </div>
+          <div class="panel-body">
+            <ul id="reclbox"></ul>
+          </div>
+        </section> -->
+        <section class="panel">
+          <header class="panel-heading">
+            基本信息
+          </header>
+          <div class="panel-body">
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">项目名称*</label>
+              <div class="col-sm-10">
+                <input type="text" value="" class="form-control" placeholder="自动检索项目名称">
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">领取地点*</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option>南京</option>
+                  <option>北京</option>
+                  <option>广州</option>
+                  <option>上海</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">领取时间*</label>
+              <div class="col-sm-10">
+                <input type="text" value="" id="ltime" class="form-control">
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">领取人</label>
+              <div class="col-sm-10">
+                <input type="text" placeholder="输入后请选择" class="input-block-level" id="selectPage">
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">理由/备注说明*</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" maxlength="120" placeholder="字符长度限制(120字以内)"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="letbox" style="display:none;">
+          <header class="panel-heading">
+            物资领用
+          </header>
+          <div class="panel-body">
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">物资地点*</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option value="">全部</option>
+                  <option value="">北京</option>
+                  <option value="">南京</option>
+                  <option value="">上海</option>
+                  <option value="">广州</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">物资种类*</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option value="">全部</option>
+                  <option value="">红酒</option>
+                  <option value="">白酒</option>
+                  <option value="">礼品</option>
+                  <option value="">其他</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">物资名称*</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option>全部</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">单价*</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon">￥</span>
+                  <input type="text" class="form-control" onkeyup="clearNoNum(this)" onblur="clearNoNum(this)" disabled>
+                  <span class="input-group-addon">元</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">数量*</label>
+              <div class="col-sm-10">
+                <input type="text" onkeyup="clearNoNum(this)" onblur="clearNoNum(this)" class="form-control" placeholder="当前库存量：20">
+              </div>
+            </div>
+            <div class="form-group customerForm">
+              <label class="col-sm-2 control-label">总价*</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon">￥</span>
+                  <input type="text" class="form-control" onkeyup="clearNoNum(this)" onblur="clearNoNum(this)" disabled>
+                  <span class="input-group-addon">元</span>
+                </div>
+              </div>
+            </div>
+            <p class="default-buttons">
+              <a href="javascript:void(0);" class="button-back btn btn-info" onclick="shLet();">取消</a>
+              <a href="javascript:void(0);" class="button-next  btn btn-info" onclick="shLet()">提交</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <header class="panel-heading">
+            领用列表
+            <i class="add-icon icon-plus" onclick="shLet()"> 新增</i>
+          </header>
+          <div class="panel-body">
+            <div id="letContainer" class="dlshouwen-grid-container"></div>
+          </div>
+        </section>
+
+
+        <section class="panel">
+          <div class="panel-body">
+            <p class="default-buttons">
+              <a href="javascript:void(0);" class="button-back btn btn-info" onclick="window.history.back()">返回</a>
+              <a class="button-next  btn btn-success" href="#/editrec">确认提交</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</section>
+<script type="text/javascript" src="assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/autocomplete/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="tag/b.selectpage.js"></script>
+<script type="text/javascript" src="tag/selectpage.js"></script>
+<script type="text/javascript" src="assets/tag/js/demo.js"></script>
+<script type="text/javascript">
+  // 领取时间
+  $('#ltime').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+  // 结束日期
+  $('#workEnd').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+</script>
+<script type="text/javascript" src="js/receives/index.js"></script>

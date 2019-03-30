@@ -30,11 +30,11 @@ var mongodb = require('mongodb');
 var server = new mongodb.Server('106.12.10.241', 27018, {auto_reconnect: true});
 var db = new mongodb.Db('admin', server, {safe: true});
 db.open(function (err, db) {
-    db.createCollection('myqueue',{safe: true}, function (err, collection) {
-        if (err) {
-            console.log(err);
-        }
-    })
+    // db.createCollection('myqueue',{safe: true}, function (err, collection) {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    // })
     if (!err) {
         console.log('connect');
         return;
@@ -53,6 +53,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
