@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <title>信息中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="assets/link/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+        media="screen" />
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/angular-ui-tree.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/prbinclud.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 表格组件 -->
+    <link rel="stylesheet" type="text/css" href="assets/table/dependents/fontAwesome/css/font-awesome.min.css"
+        media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/table/dlshouwen.grid.css" />
+    <link rel="stylesheet" type="text/css" href="assets/table/dependents/datePicker/skin/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="assets/table/dependents/datePicker/skin/default/datepicker.css" />
+
+    <!-- 当前页面CSS -->
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body ng-app="certusApp1" ng-controller="mainCtrl" main-menu-show>
+
+
+    <main id="panel">
+
+        <section id="container" class="" ng-app="certusApp">
+            <!--header start-->
+            <header class="header white-bg">
+                <div class="sidebar-toggle-box">
+                    <div data-placement="right" class="icon-reorder tooltips"></div>
+                </div>
+
+                <div class="slider-icon" toggle-main-menu>
+                    <span class="slider-font">☰</span>
+                </div>
+                <!--logo start-->
+                <a href="#/" class="logo">
+                    <span>Certus</span>Net
+                </a>
+                <!--logo end-->
+                <div class="nav notify-row" id="top_menu">
+                    <ul class="nav top-menu">
+                        <!-- notification dropdown start-->
+                        <li id="header_notification_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)"
+                                onclick="toSeduIndex()">
+                                <i class="icon-bell-alt"></i>
+                                <span class="badge bg-warning">{{notCount}}</span>
+                            </a>
+                        </li>
+                        <!-- notification dropdown end -->
+                    </ul>
+                    <!--  notification end -->
+                </div>
+                <div class="top-nav ">
+                    <!--search & user info start-->
+                    <ul class="nav pull-right top-menu">
+                        <!-- user login dropdown start-->
+                        <li class="help-book" onclick="help();">
+                            <a class="dropdown-toggle">
+                                <i class="icon-h-sign"> 帮助</i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="username" id="userName">用户名</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li>
+                                    <a href="#/personalInfo/@@@@">
+                                        个人中心
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#/password">
+                                        账户设置
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" ng-click="logout()">
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!--search & user info end-->
+                </div>
+            </header>
+            <!--header end-->
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a class="" href="#/">
+                                <i class="icon-windows"></i>
+                                <span>信息中心</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-exchange"></i>
+                                <span>我的流程</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/myInitiatorGrid">由我发起</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/seduIndex">待办事项</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/myApprovalGrid">我的已办</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toSpxx">审批权限</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="" class="">
+                                <i class="icon-tags"></i>
+                                <span>我的项目</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/proIndex">项目列表</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toProRole">职责信息</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toCustomer">客户列表</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toDemand">需求管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toProblem">问题管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toKpAndHk">开票回款</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-calendar"></i>
+                                <span>OKR管理 </span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/findOkr">OKR子任务</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/sysProjz">项目进展</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/sysVisit">客户拜访</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="" class="">
+                                <i class="icon-paste"></i>
+                                <span>办公流程</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/toMeeting">会议预定</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toLeave">请假申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/workover">加班申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toSign">补签申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/tofindTrip">出差公干</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toStamp">公章使用</a>
+                                </li>
+                                <li ng-show="autho['XZZX-LZGLR']">
+                                    <a class="" href="#/toOut">离职办理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="" class="">
+                                <i class="icon-money"></i>
+                                <span>费用流程</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/addBudget">预算申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/addCost">费用申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/bxpage">报销申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/plane">机票服务</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toBorrowing">借款申请</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/tlmoney">对公支付</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="" class="">
+                                <i class="icon-shopping-cart"></i>
+                                <span>物资管理</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/toAssets">资产管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/reclist">物资管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/receives">物资领用</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toPurchase">采购申请</a>
+                                </li>
+                                <li ng-show="autho['CGLC-CGBJR']">
+                                    <a class="" href="#/toSupplier">采购比价</a>
+                                </li>
+                                <li ng-show="autho['CGLC-CGXYR']">
+                                    <a class="" href="#/toAgreement">采购协议</a>
+                                </li>
+
+                                <li ng-show="autho['CGLC-CGYSR']">
+                                    <a class="" href="#/toReceive">采购验收</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/tconts">内部采购</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-briefcase"></i>
+                                <span>行政中心</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/toFindSeats">座位管理</a>
+                                </li>
+                                <li ng-show="autho['XZZX-ZZJGR']">
+                                    <a class="" href="#/deptList">组织架构</a>
+                                </li>
+                                <li ng-show="autho['XZZX-YGLBR']">
+                                    <a class="" href="#/employeeList">员工列表</a>
+                                </li>
+                                <li ng-show="autho['XZZX-XYGRZR']">
+                                    <a class="" href="#/addUserList">入职管理</a>
+                                </li>
+                                <li ng-show="autho['XZZX-CQBBR']">
+                                    <a class="" href="#/toLeaveBb">出勤报表</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/attendlog">考勤记录</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/anormalog">考勤处理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-desktop"></i>
+                                <span>集团管控 </span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/userloc">人员借调</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-archive"></i>
+                                <span>文档管理 </span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/documentXZ/XZ">产品销售文档</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/documentSC/SC">内部发文</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/documentYF/YF">其他文档</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-bar-chart"></i>
+                                <span>运营管理 </span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li ng-show="autho['YYGL-XMCXR']">
+                                    <a class="" href="#/toProxxs">项目查询</a>
+                                </li>
+                                <li ng-show="autho['YYGL-ZDGZR']">
+                                    <a class="" href="#/toZdgzs">重点工作</a>
+                                </li>
+                                <li ng-show="autho['YYGL-XMXXR']">
+                                    <a class="" href="#/toSysProInfo">项目信息</a>
+                                </li>
+                                <li ng-show="autho['YYGL-XMJZR']">
+                                    <a class="" href="#/toFindProReport">项目进展</a>
+                                </li>
+                                <li ng-show="autho['YYGL-XMOKRR']">
+                                    <a class="" href="#/toFindOkrReport">项目OKR</a>
+                                </li>
+                                <li ng-show="autho['YYGL-BMOKRR']">
+                                    <a class="" href="#/toFindOkrReport2">部门OKR</a>
+                                </li>
+                                <li ng-show="autho['YYGL-KHLBR']">
+                                    <a class="" href="#/toYyglCustomer">客户管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/proglist">高级列表</a>
+                                </li>
+                                <li ng-show="autho['YYGL-SJTBR']">
+                                    <a class="" href="#/opmtbi">数据图表</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/probplist">项目费用收支</a>
+                                </li>
+                                <li ng-show="autho['YYGL-GSTBR']">
+                                    <a class="" href="#/toProData">公司图表</a>
+                                </li>
+                                <li ng-show="autho['YYGL-BMTBR']">
+                                    <a class="" href="#/toBmProData">部门图表</a>
+                                </li>
+                                <li ng-show="autho['YYGL-XMTBR']">
+                                    <a class="" href="#/toProData2">项目图表</a>
+                                </li>
+                                <li ng-show="autho['YYGL-HTGLR']">
+                                    <a class="" href="#/toContract">合同管理</a>
+                                </li>
+                                <li ng-show="autho['YYGL-YYBXR']">
+                                    <a class="" href="#/toCkYshbx">预算报销</a>
+                                </li>
+                                <li ng-show="autho['YYGL-CWBBR']">
+                                    <a class="" href="#/financialData">报销数据</a>
+                                </li>
+                                <li ng-show="autho['YYGL-BPMSJR']">
+                                    <a class="" href="#/toBxInfo">BPM数据</a>
+                                </li>
+                                <li ng-show="autho['YYGL-HZBBR']">
+                                    <a class="" href="#/getBase">项目简报</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:void(0)" class="">
+                                <i class="icon-book"></i>
+                                <span>规章制度</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/regulation/ZZ">集团公司总则</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/regulationGs/GSZD">公司管理制度</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/regulationBm/BMZD">各部门管理制度</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a class="" href="">
+                                <i class="icon-cogs"></i>
+                                <span>系统管理</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a class="" href="#/toSysNotice">系统公告</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/toPerNotice">通知消息</a>
+                                </li>
+                                <li ng-show="autho['XTXX-DLXXR']">
+                                    <a class="" href="#/toLoginxx">登录信息</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/mailDatagrid" ng-show="autho['XTXX-YJXXR']">邮件消息</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/wechatDatagrid" ng-show="autho['XTXX-WXXXR']">微信消息</a>
+                                </li>
+                                <li ng-show="autho['XTXX-QXGLR']">
+                                    <a class="" href="#/roleList">权限管理</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/bxExcelImport" ng-show="autho['XTXX-BXDRR']">报销导入</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#/cgdExcelImport" ng-show="autho['XTXX-CGDRR']">采购导入</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="" href="#/proposal">
+                                <i class="icon-edit"></i>
+                                <span>建议反馈</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="http://172.16.3.58:2020" target="_blank">
+                                <i class="icon-comments"></i>
+                                <span>企业论坛</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!--sidebar end-->
+            <!--main content start-->
+            <!-- 主体内容 -->
+            <div ng-view=""></div>
+            <!--main content end-->
+            <!-- 参考文档 -->
+            <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog help-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header clearfix mid">
+                            <button type="button" class="close mid" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title shortcut-modal-title mid" id="myModalLabel">帮助文档</h4>
+                        </div>
+                        <div class="modal-body shortcut-add-box">
+                            <div class="shortcut-add-box-left">
+                                <ul>
+                                    <li class="active">
+                                        <span>新手指南·登录</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·账户设置</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·信息与资产</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·项目管理</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·项目进展</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·OKR任务</span>
+                                    </li>
+                                    <li>
+                                        <span>新手·OKR进展</span>
+                                    </li>
+                                    <li>
+                                        <span>项目线索总流程</span>
+                                    </li>
+                                    <li>
+                                        <span>战略类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>销售类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>部门类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>事务类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>测试类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>研发类·立项流程</span>
+                                    </li>
+                                    <li>
+                                        <span>项目需求流程</span>
+                                    </li>
+                                    <li>
+                                        <span>项目问题流程</span>
+                                    </li>
+                                    <li>
+                                        <span>项目投标流程</span>
+                                    </li>
+                                    <li>
+                                        <span>项目报价流程</span>
+                                    </li>
+                                    <li>
+                                        <span>项目合同流程</span>
+                                    </li>
+                                    <li>
+                                        <span>费用审批流程</span>
+                                    </li>
+                                    <li>
+                                        <span>请购审批流程</span>
+                                    </li>
+                                    <li>
+                                        <span>出差报销流程</span>
+                                    </li>
+                                    <li>
+                                        <span>现金报销流程</span>
+                                    </li>
+                                    <li>
+                                        <span>招待报销流程</span>
+                                    </li>
+                                    <li>
+                                        <span>财务审批流程</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·产品转化</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·项目架构</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·项目运作</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·项目流程</span>
+                                    </li>
+                                    <li>
+                                        <span>OKR·项目资源管理</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·常见问题</span>
+                                    </li>
+                                    <li>
+                                        <span>系统·功能说明</span>
+                                    </li>
+                                    <div class="lanPos"></div>
+                                </ul>
+                            </div>
+                            <div class="shortcut-add-box-right">
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手指南·登录</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            登录地址：<a href="http://ims.certusnet.com.cn">http://ims.certusnet.com.cn</a>
+                                            <img src="img/log.png" alt="登录界面" title="登录界面" onclick="imgbox(0);">
+                                            注意事项：<br />
+                                            1、工号和密码由对应接口人提供（孙亚云和张锐恒）；<br />
+                                            2、推荐使用Google浏览器<br />
+                                            <a href="https://www.chromedownloads.net/">下载地址</a>|
+                                            <a href="img/Chrome32.exe" download="Chrome32.exe">Win32位版本</a>|
+                                            <a href="img/Chrome64.exe" download="Chrome64.exe">Win64位版本</a>|
+                                            <a href="img/ChromeMac.dmg" download="ChromeMac.dmg">MacOS版本</a>。
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·账户设置</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、入口路径【登录】-主界面右上角【用户名】-【账户设置】；<br />
+                                            2、默认密码登入后，请务必修改账户密码。
+                                            <img src="img/pud.png" alt="新手·账户设置" title="新手·账户设置" onclick="imgbox(1);">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·信息与资产</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、个人信息修改，入口路径【登录】-主界面右上角【用户名】-【个人中心】；
+                                            <img src="img/ptu.png" alt="个人信息" title="个人信息" onclick="imgbox(2);">
+                                            2、个人资产核对，入口路径【登录】-主界面左侧边栏【行政中心】-【资产管理】。
+                                            <img src="img/ptl.png" alt="个人资产" title="个人资产" onclick="imgbox(3);">
+                                            备注：<br />
+                                            请务必确认信息/资产是否正确，若信息有误请手动修改，资产有误请联系当地资产管理员；<br />
+                                            如果不能正常修改请及时联系开发人员或发送邮件至ims-notice@certusnet.com.cn。
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·项目管理</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、项目信息确认，入口路径【登录】-主界面左侧边栏【我的项目】-【项目列表】；
+                                            <img src="img/pro.png" alt="项目列表" title="项目列表" onclick="imgbox(4);">
+                                            2、点击 [项目列表] 中 “管理” 按钮，进入 [项目仪表盘] ，鼠标滚动到页面底部，查看并核对项目信息与成员；
+                                            <img src="img/prus.png" alt="项目管理" title="项目管理" onclick="imgbox(5);">
+                                            3、若项目成员缺少销售、技术负责人、产品经理、交付四个角色，请务必补齐！
+                                            <img src="img/prun.png" alt="项目成员" title="项目成员" onclick="imgbox(6);">
+                                            备注：<br />
+                                            如果已有人员但没列入系统的角色,请及时联系开发人员或发送邮件至ims-notice@certusnet.com.cn。
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·项目进展</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、项目进展更新，入口路径【登录】-主界面左侧边栏【我的项目】-【项目列表】- [OKR管理] -（项目整体进展）；<br />
+                                            2、根据项目需要（决策上报，风险和问题，项目进展进展），点击“新增”并填写完内容，“提交”即可；<br />
+                                            3、填写项目整体进展时，项目经理请依据其他重要角色的进展情况给出项目整体进展说明。
+                                            <img src="img/prok.png" alt="项目整体进展" title="项目整体进展" onclick="imgbox(7);">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·OKR任务</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、项目OKR设定，入口路径【登录】-主界面左侧边栏【我的项目】-【项目列表】- [OKR管理] -（计划和分配）；<br />
+                                            2、若没有项目目标，请联系线索负责人在“项目仪表盘”页，项目目标模块点击“新增”按钮添加；
+                                            <img src="img/pstl.png" alt="项目目标" title="项目目标" onclick="imgbox(8);">
+                                            3、进入“OKR计划和分配”后，点击“新增”按钮添加，依据页面展示操作即可。
+                                            <img src="img/okr.png" alt="项目OKR" title="项目OKR" onclick="imgbox(9);">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>新手·OKR进展</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            1、OKR进展更新，入口路径【登录】-主界面左侧边栏【OKR管理】-（计划和分配）；<br />
+                                            2、进入页面后，点击“更新”按钮即可。
+                                            <img src="img/okrp.png" alt="OKR进展" title="OKR进展" onclick="imgbox(10);">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目线索总流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(11);">
+                                            <img src="img/xs.png" alt="项目线索总流程" title="项目线索总流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>战略类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(12);">
+                                            <img src="img/lx1.png" alt="战略类·立项流程" title="战略类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>销售类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(13);">
+                                            <img src="img/lx2.png" alt="销售类·立项流程" title="销售类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>部门类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(14);">
+                                            <img src="img/lx3.png" alt="部门类·立项流程" title="部门类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>事务类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(15);">
+                                            <img src="img/lx4.png" alt="事务类·立项流程" title="事务类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>测试类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(16);">
+                                            <img src="img/lx5.png" alt="测试类·立项流程" title="测试类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>研发类·立项流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(17);">
+                                            <img src="img/lx6.png" alt="研发类·立项流程" title="研发类·立项流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目需求流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(18);">
+                                            <img src="img/xq.png" alt="项目需求流程" title="项目需求流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目问题流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(19);">
+                                            <img src="img/wt.png" alt="项目需求流程" title="项目需求流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目投标流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(20);">
+                                            <img src="img/tb.png" alt="项目投标流程" title="项目投标流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目报价流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(21);">
+                                            <img src="img/bj.png" alt="项目报价流程" title="项目报价流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>项目合同流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(22);">
+                                            <img src="img/ht.png" alt="项目合同流程" title="项目合同流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>费用审批流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(23);">
+                                            <img src="img/fy.png" alt="费用审批流程" title="费用审批流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>请购审批流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(24);">
+                                            <img src="img/cg.png" alt="请购审批流程" title="请购审批流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>出差报销流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(25);">
+                                            <img src="img/ccbx.png" alt="出差报销流程" title="出差报销流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>现金报销流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(26);">
+                                            <img src="img/xjbx.png" alt="现金报销流程" title="现金报销流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>招待报销流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(27);">
+                                            <img src="img/zdbx.png" alt="招待报销流程" title="招待报销流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>财务审批流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(28);">
+                                            <img src="img/cwsp.png" alt="财务审批流程" title="财务审批流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·产品转化</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(28);">
+                                            <img src="img/zh.png" alt="产品转化" title="产品转化">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·项目架构</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(29);">
+                                            <img src="img/jg.png" alt="项目架构" title="项目架构">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·项目运作</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(30);">
+                                            <img src="img/yz.png" alt="项目运作" title="项目运作">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·项目流程</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(31);">
+                                            <img src="img/lc.png" alt="项目流程" title="项目流程">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>OKR·项目资源管理</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p onclick="imgbox(32);">
+                                            <img src="img/pokr.png" alt="OKR项目资源管理" title="OKR项目资源管理">
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·常见问题</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>
+                                            Q：登陆时，提示"账户被冻结"怎么办？<br />
+                                            A：目前没有真正冻结账号，只要刷新浏览器即可！<br /><br />
+                                            Q：登陆账号和密码找谁？<br />
+                                            A：工号和密码由对应接口人提供（孙亚云和张锐恒），由于目前是开发期间试用，所以只有部分人有账号和密码。<br /><br />
+                                            Q：用IE、搜狗、QQ、360等……浏览器登陆后，页面中有错位或显示异常怎么办？<br />
+                                            A：目前由于IE内核浏览器官方已经停止维护，所以推荐使用Google浏览器。<br /><br />
+                                            Q：系统不稳定或系统试用中出现问题如何解决？<br />
+                                            A：反馈对应接口人（孙亚云和张锐恒），尽量把详细操作的步骤和场景以及使用的数据，以便研发人员定位。
+                                        </p>
+                                    </ul>
+                                </div>
+                                <div class="car-info-shortcut shortcut-element-list">
+                                    <h5>
+                                        <span>系统·功能说明</span>
+                                    </h5>
+                                    <ul class="shortcut-element-box clearfix">
+                                        <p>1、首页的找人功能、项目通知消息、个人通知消息等；</p>
+                                        <p>2、首页的我的个人信息修改；</p>
+                                        <p>3、首页的账号密码修改（试用期间，请不要修改密码）；</p>
+                                        <p>4、线索的申请和审批（含线索阶段商务和费用预测）；</p>
+                                        <p>5、项目立项申请和审批（含项目运作阶段商务和费用预测）；</p>
+                                        <p>6、项目任务创建和分配；</p>
+                                        <p>7、我的OKR日志填写和OKR任务创建；</p>
+                                        <p>8、资产管理；</p>
+                                        <p>9、项目管理部分功能。</p>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 返回顶部 -->
+        <a class="to-top">返回顶部</a>
+    </main>
+    <nav id="menu">
+        <div class="nav-collapse">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu menu-list">
+                <li>
+                    <a class="" href="#/">
+                        <i class="icon-windows"></i>
+                        <span>信息中心</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-exchange"></i>
+                        <span>我的流程</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/myInitiatorGrid">由我发起</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/seduIndex">待办事项</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/myApprovalGrid">我的已办</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toSpxx">审批权限</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="" class="">
+                        <i class="icon-tags"></i>
+                        <span>我的项目</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/proIndex">项目列表</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toProRole">职责信息</a>
+                        </li>
+
+                        <li ng-show="autho['YYGL-KHLBR']">
+                            <a class="" href="#/toCustomer">客户列表</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toDemand">需求管理</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toProblem">问题管理</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toKpAndHk">开票回款</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-calendar"></i>
+                        <span>OKR管理 </span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/findOkr">OKR子任务</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/sysProjz">项目进展</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/sysVisit">客户拜访</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="" class="">
+                        <i class="icon-paste"></i>
+                        <span>办公流程</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/toMeeting">会议预定</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toLeave">请假申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/workover">加班申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toSign">补签申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/tofindTrip">出差公干</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toStamp">公章使用</a>
+                        </li>
+                        <li ng-show="autho['XZZX-LZGLR']">
+                            <a class="" href="#/toOut">离职办理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="" class="">
+                        <i class="icon-money"></i>
+                        <span>费用流程</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/addBudget">预算申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/addCost">费用申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/bxpage">报销申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/plane">机票服务</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toBorrowing">借款申请</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/tlmoney">对公支付</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="" class="">
+                        <i class="icon-shopping-cart"></i>
+                        <span>物资管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/toAssets">资产管理</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/reclist">物资管理</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/receives">物资领用</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toPurchase">采购申请</a>
+                        </li>
+                        <li ng-show="autho['CGLC-CGBJR']">
+                            <a class="" href="#/toSupplier">采购比价</a>
+                        </li>
+                        <li ng-show="autho['CGLC-CGXYR']">
+                            <a class="" href="#/toAgreement">采购协议</a>
+                        </li>
+                        <li ng-show="autho['CGLC-CGYSR']">
+                            <a class="" href="#/toReceive">采购验收</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/tconts">内部采购</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-briefcase"></i>
+                        <span>行政中心</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/toFindSeats">座位管理</a>
+                        </li>
+                        <li ng-show="autho['XZZX-ZZJGR']">
+                            <a class="" href="#/deptList">组织架构</a>
+                        </li>
+                        <li ng-show="autho['XZZX-YGLBR']">
+                            <a class="" href="#/employeeList">员工列表</a>
+                        </li>
+                        <li ng-show="autho['XZZX-XYGRZR']">
+                            <a class="" href="#/addUserList">入职管理</a>
+                        </li>
+                        <li ng-show="autho['XZZX-CQBBR']">
+                            <a class="" href="#/toLeaveBb">出勤报表</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/attendlog">考勤记录</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/anormalog">考勤处理</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-desktop"></i>
+                        <span>集团管控 </span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/userloc">人员借调</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-archive"></i>
+                        <span>文档管理 </span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/documentXZ/XZ">产品销售文档</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/documentSC/SC">内部发文</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/documentYF/YF">其他文档</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-bar-chart"></i>
+                        <span>运营管理 </span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li ng-show="autho['YYGL-XMCXR']">
+                            <a class="" href="#/toProxxs">项目查询</a>
+                        </li>
+                        <li ng-show="autho['YYGL-ZDGZR']">
+                            <a class="" href="#/toZdgzs">重点工作</a>
+                        </li>
+                        <li ng-show="autho['YYGL-XMXXR']">
+                            <a class="" href="#/toSysProInfo">项目信息</a>
+                        </li>
+                        <li ng-show="autho['YYGL-XMJZR']">
+                            <a class="" href="#/toFindProReport">项目进展</a>
+                        </li>
+                        <li ng-show="autho['YYGL-XMOKRR']">
+                            <a class="" href="#/toFindOkrReport">项目OKR</a>
+                        </li>
+                        <li ng-show="autho['YYGL-BMOKRR']">
+                            <a class="" href="#/toFindOkrReport2">部门OKR</a>
+                        </li>
+                        <li ng-show="autho['YYGL-KHLBR']">
+                            <a class="" href="#/toYyglCustomer">客户管理</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/proglist">高级列表</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/probplist">项目费用收支</a>
+                        </li>
+                        <li ng-show="autho['YYGL-SJTBR']">
+                            <a class="" href="#/opmtbi">数据图表</a>
+                        </li>
+
+                        <li ng-show="autho['YYGL-GSTBR']">
+                            <a class="" href="#/toProData">公司图表</a>
+                        </li>
+                        <li ng-show="autho['YYGL-BMTBR']">
+                            <a class="" href="#/toBmProData">部门图表</a>
+                        </li>
+                        <li ng-show="autho['YYGL-XMTBR']">
+                            <a class="" href="#/toProData2">项目图表</a>
+                        </li>
+                        <li ng-show="autho['YYGL-HTGLR']">
+                            <a class="" href="#/toContract">合同管理</a>
+                        </li>
+                        <li ng-show="autho['YYGL-YYBXR']">
+                            <a class="" href="#/toCkYshbx">预算报销</a>
+                        </li>
+                        <li ng-show="autho['YYGL-CWBBR']">
+                            <a class="" href="#/financialData">报销数据</a>
+                        </li>
+                        <li ng-show="autho['YYGL-BPMSJR']">
+                            <a class="" href="#/toBxInfo">BPM数据</a>
+                        </li>
+                        <li ng-show="autho['YYGL-HZBBR']">
+                            <a class="" href="#/getBase">项目简报</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:void(0)" class="">
+                        <i class="icon-book"></i>
+                        <span>规章制度</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/regulation/ZZ">集团公司总则</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/regulationGs/GSZD">公司管理制度</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/regulationBm/BMZD">各部门管理制度</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a class="" href="">
+                        <i class="icon-cogs"></i>
+                        <span>系统管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a class="" href="#/toSysNotice">系统公告</a>
+                        </li>
+                        <li>
+                            <a class="" href="#/toPerNotice">通知消息</a>
+                        </li>
+                        <li ng-show="autho['XTXX-DLXXR']">
+                            <a class="" href="#/toLoginxx">登录信息</a>
+                        </li>
+
+                        <li ng-show="autho['XTXX-YJXXR']">
+                            <a class="" href="#/mailDatagrid">邮件消息</a>
+                        </li>
+                        <li ng-show="autho['XTXX-WXXXR']">
+                            <a class="" href="#/wechatDatagrid">微信消息</a>
+                        </li>
+                        <li ng-show="autho['XTGL-QXGLR']">
+                            <a class="" href="#/roleList">权限管理</a>
+                        </li>
+                        <li ng-show="autho['XTXX-BXDRR']">
+                            <a class="" href="#/bxExcelImport">报销导入</a>
+                        </li>
+                        <li ng-show="autho['XTXX-CGDRR']">
+                            <a class="" href="#/cgdExcelImport">采购导入</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="" href="#/proposal">
+                        <i class="icon-edit"></i>
+                        <span>建议反馈</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="http://172.16.3.58:2020" target="_blank">
+                        <i class="icon-comments"></i>
+                        <span>企业论坛</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </nav>
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/jquery.customSelect.min.js"></script>
+
+    <!--common script for all pages-->
+    <script src="js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+
+    <!-- 外部公共js文件引入 -->
+    <script src="js/layout.js"></script>
+    <script type="text/javascript" src="assets/help/index.js"></script>
+    <!-- layer组件 -->
+    <script src="assets/layer/layer.js"></script>
+    <!-- 表格组件 -->
+    <script type="text/javascript" src="assets/table/dlshouwen.grid.js"></script>
+    <script type="text/javascript" src="assets/table/i18n/zh-cn.js"></script>
+
+    <script src="assets/link/moment-with-locales.min.js"></script>
+    <script src="assets/link/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="assets/table/dependents/datePicker/WdatePicker.js" defer="defer"></script>
+
+    <!--jquery加密技术解析-->
+    <script src="jquery.md5.js"></script>
+
+    <!--加载angularjs core-->
+    <script src="js/angular.min.js"></script>
+    <!--加载angularjs 动态加载-->
+    <script src="js/angular-animate.min.js"></script>
+    <!--加载angularjs 路由-->
+    <script src="js/angular-route.min.js"></script>
+    <!--加载angularjs Cookie-->
+    <script src="js/angular-cookies.js"></script>
+    <!-- 当前页面js文件引入 -->
+    <!--<script src="js/home/index.js"></script>-->
+    <!--主页面 app加载-->
+    <script src="js/home/ngIndex-app.js"></script>
+    <!--service加载-->
+    <script src="js/home/ngIndex-service.js"></script>
+    <!--路由 加载-->
+    <script src="js/home/ngIndex-router.js"></script>
+
+    <script src="js/home/ngIndex-method.js"></script>
+    <!--service加载-->
+    <script src="js/home/ngIndex-factory.js"></script>
+
+    <!--加载angularjs bootstrap 文件-->
+    <script src="assets/link/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript" src="js/angular-ui-tree.js"></script>
+    <script type="text/javascript" src="assets/pageslide/jquery.pageslide.min.js"></script>
+    <script type="text/javascript" src="js/do/aper.js"></script>
+
+    <!-- 流程图绘制组件 -->
+    <script type="text/javascript" src="assets/joint/lodash.min.js"></script>
+    <script type="text/javascript" src="assets/joint/backbone-min.js"></script>
+    <script type="text/javascript" src="assets/joint/joint.min.js"></script>
+    <script src="js/home/personalInfo.js"></script>
+    <script src="js/adminCenter/employeeList.js"></script>
+    <script src="js/adminCenter/employeeList/editEmployee.js"></script>
+    <script src="js/adminCenter/dept/addDept.js"></script>
+    <script src="js/adminCenter/deptList.js"></script>
+    <script src="js/edit/password.js"></script>
+    <script src="js/survey/survey.js"></script>
+    <script src="js/home/top.js"></script>
+    <script src="js/workflow/bid/addBid.js"></script>
+    <script src="js/project/edit/editPrice.js"></script>
+    <script src="js/document/documentYF.js"></script>
+    <script src="js/document/documentSC.js"></script>
+    <script src="js/document/documentXZ.js"></script>
+    <script src="js/document/documentELSE.js"></script>
+    <script src="js/document/uploadFile.js"></script>
+    <script src="js/document/uploadFileElse.js"></script>
+    <script src="attendlog/attendlog.js"></script>
+    <script src="js/workflow/CCBX/reimbursementDatagrid.js"></script>
+    <script src="js/workflow/CCBX/addCCbxLc.js"></script>
+    <script src="js/workflow/CCBX/openCashView.js"></script>
+    <script src="js/workflow/CCBX/receptionReimburse.js"></script>
+    <script src="js/workflow/CCBX/financialDataMet.js"></script>
+    <script src="js/proinfo/purchase/buyingApplyFor-add.js"></script>
+    <script src="js/proinfo/purchase/borrowing.js"></script>
+
+    <script src="js/workflow/CCBX/ccbxinfodetail.js"></script>
+    <script src="js/project/problem.js"></script>
+    <script src="reclist/reclist.js"></script>
+    <script src="js/workflow/router.js"></script>
+    <script src="bxExcelImport/bxExcelImport.js"></script>
+    <script src="js/workflow/routered.js"></script>
+    <script src="js/proinfo/purchase/addSuppliesNew.js"></script>
+    <script src="js/proinfo/purchase/agreement.js"></script>
+    <script src="js/proinfo/purchase/receive.js"></script>
+    <script src="js/proinfo/purchase/stamp.js"></script>
+    <script src="js/proinfo/addNewUser/addNewUser.js"></script>
+    <script src="js/workflow/XJDKLC/xjdkSubmit.js"></script>
+    <script>
+        function toSeduIndex() {
+            location.href = "#/seduIndex";
+        }
+        var nowPinying;
+
+        function isSamePinyin(element) {
+
+            return element.pinyin.indexOf(nowPinying) > -1 || element.userName2.indexOf(nowPinying) > -1 || element
+                .userName
+                .indexOf(nowPinying) > -1;
+        }
+
+        function showTs() {
+            // layer.msg("正在开发中");
+            alert("正在开发中");
+        }
+    </script>
+    <!-- 移动端侧边栏效果 -->
+    <script type="text/javascript" src="assets/slideout/slideout.min.js"></script>
+    <!-- 返回顶部组件 -->
+    <script type="text/javascript" src="assets/top/toTop.min.js"></script>
+    <script type="text/javascript">
+        $('.to-top').toTop();
+
+        function getComp(code) {
+            if (code == "STSJT") {
+                return "1";
+            } else if (code == "STSGD") {
+                return "2";
+            } else if (code == "STSNJ") {
+                return "3";
+            }
+        }
+    </script>
+</body>
+
+</html>
