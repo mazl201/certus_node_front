@@ -1,0 +1,104 @@
+.select-res span {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    color: #99999b;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.select-res p {
+    position: relative;
+    top: -28px;
+    left: 0;
+    height: 28px;
+    line-height: 28px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+}
+
+.select-res a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: url(img/close_btn.jpg) no-repeat center;
+    cursor: pointer;
+}
+
+.select-res input {
+    width: 172px;
+    height: 14px;
+    line-height: 14px;
+    margin-left: 4px;
+    padding: 7px 5px;
+    border: solid 1px #c0c0c0;
+    color: #2c2c2c;
+}
+
+.select-res span.selected {
+    color: #626262;
+}
+
+.select-box {
+    border: solid 1px #ddd;
+    width: 578px;
+    height: 245px;
+    padding: 20px;
+    margin-top: 2px;
+    display: none;
+    z-index: 5;
+    background: #fff;
+}
+
+.select-box .close-btn {
+    position: absolute;
+    left: 570px;
+    top: 38px;
+    cursor: pointer;
+}
+
+.select-box .wrap {
+    height: 200px;
+    border: solid 1px #ddd;
+    margin-top: 5px;
+}
+
+.select-box ul {
+    float: left;
+    width: 178px;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.select-box ul li {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    background: url(img/arr.gif) no-repeat 152px center;
+    color: #626262;
+    cursor: pointer;
+}
+
+.select-box ul li.selected {
+    background: #428bca;
+    color: #fff;
+}
+
+.second {
+    position: inherit;
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 164px;
+    height: 175px;
+    padding: 0;
+    border-radius: 0;
+    overflow: inherit;
+}
