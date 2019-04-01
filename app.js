@@ -1,49 +1,44 @@
 var createError = require('http-errors');
 var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
+//暂时不用
+//var MongoClient = require('mongodb').MongoClient;
+//test
 var test = require('assert');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//引入 session 管理工具
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// var usersRouter = require('./routes/mongodb');
-
+var mongodb = require('./routes/mongodb');
+var certusProcess = require('./routes/certusDataProcess');
 var app = express();
 
-
-// Connection url
-// var url = 'mongodb://106.12.10.241:27018/admin';
-// // Connect using MongoClient
-// MongoClient.connect(url, function (err, db) {
-//     // Use the admin database for the operation
-//     var adminDb = db.admin();
-//     // List all the available databases
-//     adminDb.listDatabases(function (err, dbs) {
-//         test.equal(null, err);
-//         test.ok(dbs.databases.length > 0);
-//         db.close();
-//     });
-// });
-var mongodb = require('mongodb');
-var server = new mongodb.Server('106.12.10.241', 27018, {auto_reconnect: true});
-var db = new mongodb.Db('admin', server, {safe: true});
-db.open(function (err, db) {
-    // db.createCollection('myqueue',{safe: true}, function (err, collection) {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    // })
-    if (!err) {
-        console.log('connect');
-        return;
-    } else {
-        console.log(err);
-    }
+//使用session
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+}));
 
 
+
+
+//允许跨域访问
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // 表示任意的源
+    // res.header("Access-Control-Allow-Origin", "http://www.wtapi.wang"); // 只有这个网址
+    res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",'unknown')
+    res.header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    next();
 });
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -55,9 +50,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-app.use('/', indexRouter);
+//router
+app.use("/",indexRouter);
 app.use('/users', usersRouter);
+app.use('/certus/dataProcess', certusProcess);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
