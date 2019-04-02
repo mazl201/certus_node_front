@@ -10,9 +10,14 @@ var logger = require('morgan');
 //引入 session 管理工具
 var session = require('express-session');
 
+//引入 数据库 js
+var mongodb = require('./dbase/mongodb');
+var mongodb = require('./dbase/mysql');
+
+
+//引入 路由 js
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var mongodb = require('./routes/mongodb');
 var certusProcess = require('./routes/certusDataProcess');
 var app = express();
 
