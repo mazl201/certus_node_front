@@ -1,15 +1,16 @@
 var mysql = require("mysql");
+const mysqlConfig = require("../config/config")
 var mysqlConnect = mysql.createConnection({
 
-    host     : '172.16.3.58',
+    host     :mysqlConfig.mysqlHost,
 
-    user     : 'mysqladmin',
+    user     : mysqlConfig.mysqlUser,
 
-    password : 'mysql@583306',
+    password : mysqlConfig.mysqlPass,
 
-    port: '3306',
+    port: mysqlConfig.mysqlPort,
 
-    database: 'certus',
+    database: mysqlConfig.mysqldbPath,
 });
 
 mysqlConnect.connect();
