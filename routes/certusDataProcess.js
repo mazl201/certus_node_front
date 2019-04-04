@@ -29,7 +29,7 @@ router.get('/receiveSubmit', function (req, res, next) {
 
 //处理 成员 操作 记录
 router.post("/listUserOperate", function (req, res, next) {
-    mysql.query("select * from proj_user_change_record where proj_id = ?",[req.body.projId],function(err,result){
+    mysql.query("select * from proj_user_change_record where proj_id = ? order by update_date desc",[req.body.projId],function(err,result){
         if(err){
             console.log("查询失败");
         }else{
@@ -47,7 +47,7 @@ router.post("/projUserOperate", function (req, res, next) {
             operatorName: userName,
             operateTypeName: "",
             operatedManName: userNameOrigin,
-            roleChangeTo: req.body.baseInfo.proRole,
+            roleChangeTo: req.body.baseInfo.roleName,
             id: uuid.v1(),
             projId:req.body.baseInfo.projId,
             updateDate:new Date()
