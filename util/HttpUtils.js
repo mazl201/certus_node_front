@@ -16,7 +16,7 @@ var post = function (url, token, callback) {
         }
     }
     var o = {
-        url: "http://" + server.host + ":" + server.port + "/projmanager/" + url,
+        url: "http://" + server.host + ":" + server.port + "/" + url,
         method: 'GET',
         strictSSL: false,
         timeout: 1500,

@@ -51,7 +51,6 @@ router.post("/projUserOperate", function (req, res, next) {
             id: uuid.v1(),
             projId:req.body.baseInfo.projId,
             updateDate:new Date()
-
         };
 
         var insertSql = "INSERT INTO `proj_user_change_record` (`id`,`operate_type_name`,`operated_man_name`,`operator_name`,`role_change_to`,`proj_id`,`update_date`)VALUES(?, ?, ?, ?, ?, ?,?)"
