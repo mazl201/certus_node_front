@@ -41,7 +41,7 @@ router.post("/listUserOperate", function (req, res, next) {
 
 //处理公司 code
 router.post("/relatedCompanyName", function (req, res, next) {
-    mysql.query("select company from company where company_id = ?",[req.body.companycode],function(err,result){
+    mysql.query("select company as companyName,company_id as companyCode from company",function(err,result){
         if(err){
             console.log("查询失败");
         }else{
