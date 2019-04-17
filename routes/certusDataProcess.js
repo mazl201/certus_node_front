@@ -39,6 +39,18 @@ router.post("/listUserOperate", function (req, res, next) {
     })
 })
 
+//处理公司 code
+router.post("/relatedCompanyName", function (req, res, next) {
+    mysql.query("select company from company where company_id = ?",[req.body.companycode],function(err,result){
+        if(err){
+            console.log("查询失败");
+        }else{
+            res.json(result)
+            // return result;
+        }
+    })
+})
+
 //处理 成员 操作 记录
 router.post("/projUserOperate", function (req, res, next) {
     http("nodeVerify", req.header("Authorization").replace("bearer ", ""), function (userName) {
