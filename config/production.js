@@ -3,18 +3,23 @@
  */
 module.exports = {
     mysqlConfig : {
-        mysqlHost: "172.16.3.58" ,
+        mysqlHost: "172.16.3.247" ,
         mysqlPort:3306,
-        mysqlUser:"mysqladmin",
-        mysqlPass:"mysql@583306",
-        mysqldbPath:"certus"
+        mysqlUser:"admin",
+        mysqlPass:"247mysqld",
+        mysqldbPath:"certus_ims"
     },
     mongoConfig : {
         host: "172.16.3.247" ,
         port:27017,
     },
     server : {
-        host:"172.16.3.58",
+        host:"172.16.3.246",
         port:"8080"
+    },
+    serverConf : {
+        host:"172.16.3.247",
+        port:"8089"
     }
+
 };

@@ -8,13 +8,20 @@ var app = require('../app');
 var debug = require('debug')('untitled:server');
 var http = require('http');
 
+var path = require('path');
+// 通过NODE_ENV来设置环境变量，如果没有指定则默认为生产环境
+var env = process.env.NODE_ENV || 'production';
+env = env.toLowerCase();
+// 载入配置文件
+var serverConf = require(path.resolve("./config", env)).serverConf;
+
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '8089');
-app.set("host","172.16.3.58");
-app.set('port', port);
+app.set("host",serverConf.host);
+app.set('port', serverConf.port);
 
 /**
  * Create HTTP server.

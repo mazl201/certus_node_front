@@ -16,5 +16,9 @@ module.exports = {
     server : {
         host:"172.16.3.58",
         port:"8080"
+    },
+    serverConf : {
+        host:"172.16.3.58",
+        port:"8089"
     }
 };
