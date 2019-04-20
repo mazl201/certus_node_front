@@ -4,6 +4,7 @@ var path = require('path');
 var env = process.env.NODE_ENV || 'production';
 env = env.toLowerCase();
 // 载入配置文件
+print(__dirname+env);
 var mongoConfig = path.resolve(__dirname, env).mongoConfig;
 var mongodb = require('mongodb');
 // var mongoConfig = require("../config/mongodb")
