@@ -5,7 +5,7 @@ var path = require('path');
 var env = process.env.NODE_ENV || 'production';
 env = env.toLowerCase();
 // 载入配置文件
-const mysqlConfig = path.resolve(__dirname, env).mysqlConfig;
+const mysqlConfig = require(path.resolve("./config", env)).mysqlConfig;
 var mysqlConnect = mysql.createConnection({
 
     host     :mysqlConfig.mysqlHost,

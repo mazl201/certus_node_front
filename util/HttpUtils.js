@@ -3,7 +3,7 @@ var path = require('path');
 var env = process.env.NODE_ENV || 'production';
 env = env.toLowerCase();
 // 载入配置文件
-var server = path.resolve(__dirname, env).server;
+var server = require(path.resolve("./config", env)).server;
 var http = require("http");
 var request = require("request");
 
