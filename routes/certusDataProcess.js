@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 db = require("../dbase/mongodb");
 mysql = require("../dbase/mysql");
 http = require("../util/HttpUtils");
@@ -77,9 +78,7 @@ router.post("/projUserOperate", function (req, res, next) {
                 var projId = req.body.baseInfo.proId;
                 //比对 roleId 是否变化
                 var params = [projId, userId];
-
                 var roleId = req.body.baseInfo.roleId
-
                 mysql.query(insertSql,[insertData.id,insertData.operateTypeName,insertData.operatedManName,insertData.operatorName,insertData.roleChangeTo,insertData.projId,insertData.updateDate],function(err,result){
                     if(err){
                         console.log("数据插入不成功");
