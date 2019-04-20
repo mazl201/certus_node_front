@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var sio = require('socket.io');
 //暂时不用
 //var MongoClient = require('mongodb').MongoClient;
 //test
@@ -27,7 +28,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
-
 
 
 
@@ -76,4 +76,12 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+//建立 socket 链接
+var listen = sio.listen(8066);
+listen.on('connection',function(res){
+    console.log('a user connected.');
+    socket.on('disconnect', function() {
+        console.log('user disconnected.');
+    });
+})
 module.exports = app;
