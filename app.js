@@ -11,6 +11,7 @@ var logger = require('morgan');
 //引入 session 管理工具
 var session = require('express-session');
 
+
 //引入 数据库 js
 var mongodb = require('./dbase/mongodb');
 var mongodb = require('./dbase/mysql');
@@ -76,12 +77,5 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-//建立 socket 链接
-var listen = sio.listen(8066);
-listen.on('connection',function(res){
-    console.log('a user connected.');
-    socket.on('disconnect', function() {
-        console.log('user disconnected.');
-    });
-})
+
 module.exports = app;
