@@ -5,6 +5,9 @@
  */
 
 var app = require('../app');
+
+var business = require("../business/charge/againest/regularGrid");
+
 var debug = require('debug')('untitled:server');
 var http = require('http');
 
@@ -35,8 +38,9 @@ var server = http.createServer(app);
 
 server.listen(port);
 server.on('error', onError);
-server.on('listening', onListening);
 
+
+server.on('listening', onListening);
 var ss = require("../SocketServer");
 var ssHttp = require("../SocketServerHttp");
 

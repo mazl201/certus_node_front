@@ -4,11 +4,13 @@ var http = require('http'),
     mysql = require("./dbase/mysql"),
     httpLocal = require("./util/HttpUtils");
 
+
 // 虽然我们这里使用了同步的方法，那会阻塞 Node 的事件循环，但是这是合理的，因为 readFileSync() 在程序周期中只执行一次，而且更重要的是，同步方法能够避免异步方法所带来的“与 SocketIO 之间额外同步的问题”。当 HTML 文件读取完毕，而且服务器准备好之后，如此按照顺序去执行就能让客户端马上得到 HTML 内容。
 // var sockFile = fs.readFileSync('socket.html');
 
 // Socket 服务器还是构建于 HTTP 服务器之上，因此先调用 http.createServer()
 server = http.createServer();
+//预留 http 请求 口
 server.on('request', function (req, res) {
 
 
@@ -48,7 +50,7 @@ socket.of('/department')
             var res = this;
             mysql.query("select company as companyName,company_id as companyCode from company",function(err,result){
                 if(err){
-                    console.log("查询失败");
+                    console.log("查询 company ,查询失败");
                 }else{
                     res.write(result)
                     // res.end();
@@ -137,3 +139,13 @@ socket.of("member")
               })
           })
       })
+
+//尝试 初始 话 mysql进入 域外
+socket.mysql = mysql;
+
+//regularGrid
+var require2 = require("./business/charge/againest/regularGrid");
+
+require2(socket);
+
+module.exports = socket;

@@ -12,6 +12,7 @@ var logger = require('morgan');
 var session = require('express-session');
 
 
+
 //引入 数据库 js
 var mongodb = require('./dbase/mongodb');
 var mongodb = require('./dbase/mysql');
@@ -22,6 +23,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var certusProcess = require('./routes/certusDataProcess');
 var app = express();
+
+
 
 //使用session
 app.use(session({
