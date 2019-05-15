@@ -71,6 +71,10 @@ require2(socket);
 
 //尝试 初始 话 mysql进入 域外
 socket.mysql = mysql;
+//include redisClient
+socket.redisClient = redisClient;
+//include httpLocal
+socket.httpLocal = httpLocal;
 
 
 module.exports = socket;
