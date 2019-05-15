@@ -9,6 +9,11 @@ module.exports = {
         mysqlPass:"247mysqld",
         mysqldbPath:"certus_ims"
     },
+    redisConf : {
+        Host:"172.16.3.58",
+        Port:"6379",
+        Password:"redis@586379"
+    },
     mongoConfig : {
         host: "172.16.3.247" ,
         port:27017,

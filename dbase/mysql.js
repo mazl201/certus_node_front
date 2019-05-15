@@ -21,4 +21,9 @@ var mysqlConnect = mysql.createConnection({
 
 mysqlConnect.connect();
 
+mysqlConnect.on("error",function(error){
+    //目前 先 简单 打印 成 日志
+    console.log(error);
+})
+
 module.exports = mysqlConnect;
