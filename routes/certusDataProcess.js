@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-db = require("../dbase/mongodb");
+// db = require("../dbase/mongodb");
 mysql = require("../dbase/mysql");
 http = require("../util/HttpUtils");
 uuid = require("uuid");

@@ -14,13 +14,14 @@ var session = require('express-session');
 
 
 //引入 数据库 js
-var mongodb = require('./dbase/mongodb');
+// var mongodb = require('./dbase/mongodb');
 var mongodb = require('./dbase/mysql');
 
 
 //引入 路由 js
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var errorLog = require('./business/errorLog/error_log.js');
 var certusProcess = require('./routes/certusDataProcess');
 var app = express();
 
@@ -62,6 +63,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //router
 app.use("/",indexRouter);
 app.use('/users', usersRouter);
+app.use('/error', errorLog);
 app.use('/certus/dataProcess', certusProcess);
 
 // catch 404 and forward to error handler
