@@ -21,29 +21,29 @@ var mongodb = require('./dbase/mysql');
 //引入 路由 js
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var errorLog = require('./business/errorLog/error_log.js');
+var errorLog = require('./business/errorLog/error_log');
 var certusProcess = require('./routes/certusDataProcess');
 var app = express();
 
 
-
-//使用session
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-}));
+//
+// //使用session
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true,
+// }));
 
 
 
 //允许跨域访问
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // 表示任意的源
-    // res.header("Access-Control-Allow-Origin", "http://www.wtapi.wang"); // 只有这个网址
-    res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("X-Powered-By",'unknown')
-    res.header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    // res.header("Access-Control-Allow-Origin", "*"); // 表示任意的源
+    // // res.header("Access-Control-Allow-Origin", "http://www.wtapi.wang"); // 只有这个网址
+    // res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // res.header("X-Powered-By",'unknown')
+    // res.header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
     next();
 });
 

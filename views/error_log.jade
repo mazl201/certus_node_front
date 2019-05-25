@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} + aaa
+
+  each single in error
+    p #{single.time}
+    p #{single.brief}
+    ul #{single.content}
