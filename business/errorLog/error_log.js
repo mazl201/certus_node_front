@@ -20,7 +20,6 @@ router.get('/error', function(req, res, next) {
                     console.log("22")
                     res.render("error_log",{title:"bbbb",error:ret})
                 }
-
             })
             return collection;
         }
