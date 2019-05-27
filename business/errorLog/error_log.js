@@ -24,7 +24,6 @@ router.get('/error', function(req, res, next) {
             return collection;
         }
     });
-
 });
 
 module.exports = router;
