@@ -13,7 +13,6 @@ function regularGrid(socket){
                 if(err){
                     console.log("查询 charge_againest 失败,mysql 使用失败");
                 }else{
-
                     res.write(filterColumn(result));
                 }
             })

@@ -7,18 +7,20 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
+    "crypto": "^1.0.1",
     "debug": "~2.6.9",
+    "decimal": "0.0.2",
+    "decimal.js": "^10.2.0",
     "ejs": "^2.6.1",
     "express": "~4.16.0",
+    "express-session": "~1.15.6",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "mongodb": "^3.2.5",
     "morgan": "~1.9.0",
-    "express-session": "~1.15.6",
     "mysql": "~2.5.4",
-    "socket.io": "^2.2.0",
-    "request": "^2.88.0",
     "redis": "^2.8.0",
-    "crypto": "^1.0.1"
+    "request": "^2.88.0",
+    "socket.io": "^2.2.0"
   }
 }

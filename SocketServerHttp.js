@@ -69,6 +69,9 @@ operateRequ(socket);
 var require2 = require("./business/charge/againest/regularGrid");
 require2(socket);
 
+var businessRedis = require("./business/project/businessQuote/business-redis.js")
+businessRedis(socket);
+
 //尝试 初始 话 mysql进入 域外
 socket.mysql = mysql;
 //include redisClient
