@@ -9,7 +9,7 @@ function businessRedis(socket){
                 socket.redisClient.set(this.id,0.00);
                 var redisKey = this.id;
                 data.forEach(function(every){
-                    var discountPrice = new Decimal(every.cataPrice*(100-every.discountedRate)/100);
+                    var discountPrice = new Decimal(every.cataPrice*(every.discountedRate)/100);
                     var taxPrice = new Decimal(discountPrice.toFixed(2)*(100+every.taxRate)/100);
                     every.discountPrice = discountPrice.toFixed(2);
                     every.taxPrice = taxPrice.toFixed(2);
