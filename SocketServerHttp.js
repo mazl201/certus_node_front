@@ -72,6 +72,9 @@ require2(socket);
 var businessRedis = require("./business/project/businessQuote/business-redis.js")
 businessRedis(socket);
 
+var toFix2Method = require("./business/charge/retribursement/toFix2Method.js")
+toFix2Method(socket);
+
 //尝试 初始 话 mysql进入 域外
 socket.mysql = mysql;
 //include redisClient
