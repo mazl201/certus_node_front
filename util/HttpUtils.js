@@ -36,7 +36,7 @@ var post = function (url, token, callback) {
         if(err){
             console("没有鉴权无法继续执行");
         }else{
-            callback(eval("("+body+")").userName)
+            callback(eval("("+body+")"))
         }
     })
 

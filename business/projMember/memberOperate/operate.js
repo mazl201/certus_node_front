@@ -20,10 +20,10 @@ module.exports = function(socket){
             //成员操作
             client.on("projUserOperate",function(body){
                 var res = this;
-                socket.httpLocal("nodeVerify", body.headerAuthorization, function (userName) {
+                socket.httpLocal("nodeVerify", body.headerAuthorization, function (data) {
                     var userNameOrigin = body.baseInfo.userName;
                     var insertData = {
-                        operatorName: userName,
+                        operatorName: data.userName,
                         operateTypeName: "",
                         operatedManName: userNameOrigin,
                         roleChangeTo: body.baseInfo.roleName,
