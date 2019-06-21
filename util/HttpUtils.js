@@ -32,13 +32,18 @@ var post = function (url, token, callback) {
         },
         // body: {"user":"111"}
     };
-    request(o, function(err, response, body){
-        if(err){
-            console("没有鉴权无法继续执行");
-        }else{
-            callback(eval("("+body+")"))
-        }
-    })
+    try{
+        request(o, function(err, response, body){
+            if(err){
+                console.log("没有鉴权无法继续执行");
+            }else{
+                callback(eval("("+body+")"))
+            }
+        })
+    }catch(e){
+        console.log("http back end request failed")
+    }
+
 
     // var req = http.request(options, function(res){
     //     res.setEncoding("utf8");
