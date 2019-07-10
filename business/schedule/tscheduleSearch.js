@@ -83,6 +83,41 @@ module.exports = function (socket) {
                     getFirstFive()
                 })
 
+            });
+
+            client.on("list5newCount", function (data) {
+                var res = this;
+                socket.httpLocal("nodeVerify", data.headerAuthorization, function (data) {
+                    let resp;
+                    async function getFirstFive() {
+                        try {
+                            resp = await esclient.count({
+                                index: 'workflow',
+                                type: 't_schedule',
+                                body: {
+                                    "query": { "bool":{
+                                        "must":[
+                                            {"match":{
+                                                "state":"N"
+                                            }},{
+                                                "match":{
+                                                    "dealUserId": data.userId
+                                                }
+                                            }
+                                        ]
+                                    }}
+                                }
+                            });
+                        } catch (e) {
+                            resp = null;
+                            res.write(0)
+                        }
+
+                        res.write(resp.count);
+                    }
+                    getFirstFive()
+                })
+
             })
         })
 }
