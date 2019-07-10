@@ -117,7 +117,6 @@ module.exports = function (socket) {
                     }
                     getFirstFive()
                 })
-
             })
         })
 }
