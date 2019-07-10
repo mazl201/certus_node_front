@@ -25,6 +25,10 @@ module.exports = {
     serverConf : {
         host:"172.16.3.247",
         port:"8089"
+    },
+    elasticSearchConf : {
+        host:"172.16.3.247",
+        port:"9200"
     }
 
 };
