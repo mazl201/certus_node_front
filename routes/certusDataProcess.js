@@ -5,6 +5,46 @@ var router = express.Router();
 mysql = require("../dbase/mysql");
 http = require("../util/HttpUtils");
 uuid = require("uuid");
+require("../public/socket/socket.io.js");
+var path = require('path');
+// 通过NODE_ENV来设置环境变量，如果没有指定则默认为生产环境
+var env = process.env.NODE_ENV || 'production';
+env = env.toLowerCase();
+// 载入配置文件
+const server = require(path.resolve("./config", env)).server;
+
+router.post("/transmitSocket",function(req, res, next){
+    if(req.body.modudleName && req.body.param){
+        let modudleName = req.body.modudleName;
+        let param = req.body.param;
+        let params = req.body.params;
+        try{
+            var socket = io(server.host + ":9001" + "/" + modudleName);
+            // var socket = io("localhost:9000");
+            socket.on("connect", function (msg, b, c) {
+
+            })
+            socket.on("message", function (data, b, c) {
+                if (data && data == "success connect") {
+                    if (param) {
+                        param.headerAuthorization = access_token;
+                    }
+                    let url = "http://"+ server.host +":8086/end/";
+                    socket.emit(url, param);
+                } else if (data) {
+                    socket.close();
+                    res.json(data);
+                }
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }else{
+        res.status(500).end("failed")
+    }
+
+})
+
 
 router.post('/receiveSubmit', function (req, res, next) {
     res.render('index', {title: 'index'});

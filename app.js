@@ -23,6 +23,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var errorLog = require('./business/errorLog/error_log');
 var certusProcess = require('./routes/certusDataProcess');
+var socket = require('./routes/socket').router;
+var proxy = require('http-proxy-middleware');
+
 var app = express();
 
 
@@ -36,17 +39,29 @@ var app = express();
 
 
 
-//允许跨域访问
-app.all('*', function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "*"); // 表示任意的源
-    // // res.header("Access-Control-Allow-Origin", "http://www.wtapi.wang"); // 只有这个网址
-    // res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    // res.header("X-Powered-By",'unknown')
-    // res.header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-    next();
-});
 
+// //允许跨域访问
+// app.use(function (req,res,next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type");
+//     res.header("Access-Control-Allow-Credentials","true");
+//     next();
+// });
+app.all("*",function(req,res,next){
+    //设置允许跨域的域名，*代表允许任意域名跨域
+    res.header("Access-Control-Allow-Origin","*");
+    //允许的header类型
+    res.header("Access-Control-Allow-Headers","Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    //跨域允许的请求方式
+    res.header("Access-Control-Allow-Methods","DELETE,PUT,POST,GET,OPTIONS");
+    if (req.method.toLowerCase() == 'options'){
+        res.send(200);  //让options尝试请求快速结束
+    }
+    else{
+        next();
+    }
+})
 
 
 // view engine setup
@@ -65,7 +80,9 @@ app.use("/",indexRouter);
 app.use('/users', usersRouter);
 app.use('/error', errorLog);
 app.use('/certus/dataProcess', certusProcess);
+app.use('/socket', socket);
 
+// app.use('/', proxy({ target: '/certus/dataProcess/*', changeOrigin: true }));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

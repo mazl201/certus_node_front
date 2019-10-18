@@ -1,4 +1,158 @@
 var crypto = require("crypto");
+var path = require('path');
+var router = require(path.resolve("./routes", 'socket')).router;
+var socket = require(path.resolve("./routes", 'socket')).socket;
+router.post('/member/connection', function (req, res, next) {
+    if(req.body.modudleName && req.body.param){
+        let data = eval("("+req.body.param+")");
+
+        socket.mysql.query("select * from proj_user_change_record where proj_id = ? order by update_date desc",[data.projId],function(err,result){
+            if(err){
+                console.log("查询失败");
+            }else{
+                res.status(200).json(result)
+                // return result;
+            }
+        })
+
+    }else{
+        res.status(500).end("failed")
+    }
+});
+
+
+router.post('/member/listUserOperate', function (req, res, next) {
+    if(req.body.modudleName && req.body.param){
+        let data = eval("("+req.body.param+")");
+
+        socket.mysql.query("select * from proj_user_change_record where proj_id = ? order by update_date desc",[data.projId],function(err,result){
+            if(err){
+                console.log("查询失败");
+            }else{
+                res.status(200).json(result)
+                // return result;
+            }
+        })
+    }else{
+        res.status(500).end("failed")
+    }
+});
+
+router.post('/member/projUserOperate', function (req, res, next) {
+    if(req.body.modudleName && req.body.param){
+        let body = eval("("+req.body.param+")");
+
+        socket.httpLocal("nodeVerify", body.headerAuthorization, function (data) {
+            var userNameOrigin = body.baseInfo.userName;
+            var insertData = {
+                operatorName: data.userName,
+                operateTypeName: "",
+                operatedManName: userNameOrigin,
+                roleChangeTo: body.baseInfo.roleName,
+                id: uuid.v1(),
+                projId:body.baseInfo.projId,
+                updateDate:new Date()
+            };
+
+            var insertSql = "INSERT INTO `proj_user_change_record` (`id`,`operate_type_name`,`operated_man_name`,`operator_name`,`role_change_to`,`proj_id`,`update_date`)VALUES(?, ?, ?, ?, ?, ?,?)"
+            switch (body.operate) {
+
+                case "change": {
+
+                    insertData.operateTypeName = "修改"
+
+                    //首先对 几个字段的 字符串 拼接
+                    var conjunctionStr = insertData.operateTypeName+insertData.operatedManName+insertData.operatorName+insertData.roleChangeTo+insertData.updateDate;
+                    // 对 conjunctionStr 使用 sha256
+                    var crptedStr = crypto.createHash('SHA256').update(conjunctionStr).digest('hex');
+                    //校验 一下 值 是否 重复
+                    socket.redisClient.get("crptedStr",function(err,value){
+                        if(err)console.log(err);
+
+                        if(value){
+                            //已经 做过 插入 不做任何 直接 返回
+                            res.write({"date":"success"});
+                        }else{
+                            var userId = body.baseInfo.userId;
+                            var projId = body.baseInfo.proId;
+                            //比对 roleId 是否变化
+                            var params = [projId, userId];
+                            var roleId = body.baseInfo.roleId
+                            socket.mysql.query(insertSql,[insertData.id,insertData.operateTypeName,insertData.operatedManName,insertData.operatorName,insertData.roleChangeTo,insertData.projId,insertData.updateDate],function(err,result){
+                                if(err){
+                                    console.log("数据插入不成功");
+                                }else{
+                                    //暂时 使用 sha256 的方式 是否 维持 一个 简单的 队列 在 redis 里面
+                                    socket.redisClient.set(crptedStr,1,function(err,ret){
+                                        if(err)console.log("save to redis failed"+err);
+                                    })
+                                    socket.redisClient.expire(crptedStr,1000,function(err,ret){
+                                        if(err)console.log("set expire time failed to proj member"+err);
+                                    })
+
+                                    res.write({"date":"success"})
+                                }
+                            })
+
+                        }
+
+                    })
+
+
+                }
+                    ;
+                    break;
+                case "new": {
+                    insertData.operateTypeName = "新增";
+                    //首先对 几个字段的 字符串 拼接
+                    var conjunctionStr = insertData.operateTypeName+insertData.operatedManName+insertData.operatorName+insertData.roleChangeTo+insertData.updateDate;
+                    // 对 conjunctionStr 使用 sha256
+                    var crptedStr = crypto.createHash('SHA256').update(conjunctionStr).digest('hex');
+                    //校验 一下 值 是否 重复
+                    socket.redisClient.get("crptedStr",function(err,value){
+                        if(err)console.log(err);
+
+                        if(value){
+                            //已经 做过 插入 不做任何 直接 返回
+                            res.write({"date":"success"});
+                        }else{
+                            socket.mysql.query(insertSql,[insertData.id,insertData.operateTypeName,insertData.operatedManName,insertData.operatorName,insertData.roleChangeTo,insertData.projId,insertData.updateDate],function(err,result){
+                                if(err){
+                                    console.log("数据插入不成功");
+                                }else{
+                                    //暂时 使用 sha256 的方式 是否 维持 一个 简单的 队列 在 redis 里面
+                                    socket.redisClient.set(crptedStr,1,function(err,ret){
+                                        if(err)console.log("save to redis failed"+err);
+                                    })
+                                    socket.redisClient.expire(crptedStr,1000,function(err,ret){
+                                        if(err)console.log("set expire time failed to proj member"+err);
+                                    })
+
+                                    res.write({"date":"success"})
+                                }
+                            })
+                        }
+
+                    })
+                };
+                    break;
+                case "delete": {
+                    insertData.operateTypeName = "删除";
+                    socket.mysql.query(insertSql,[insertData.id,insertData.operateTypeName,insertData.operatedManName,insertData.operatorName,insertData.roleChangeTo,insertData.projId,insertData.updateDate],function(err,result){
+                        if(err){
+                            console.log("数据插入不成功");
+                        }else{
+                            res.write({"date":"success"})
+                        }
+                    })
+                };break;
+            }
+        })
+
+    }else{
+        res.status(500).end("failed")
+    }
+});
 
 module.exports = function(socket){
     socket.of("member")
