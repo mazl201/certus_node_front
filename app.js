@@ -24,7 +24,6 @@ var usersRouter = require('./routes/users');
 var errorLog = require('./business/errorLog/error_log');
 var certusProcess = require('./routes/certusDataProcess');
 var socket = require('./routes/socket').router;
-var proxy = require('http-proxy-middleware');
 
 var app = express();
 
